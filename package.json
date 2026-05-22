@@ -8,13 +8,14 @@
     "mobile"
   ],
   "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build:web": "cd aistudio-elrc-maker && npm install && npm run build",
+    "build": "npm run build:web && npx cap sync",
+    "android": "npx cap open android"
   },
   "dependencies": {
-    "@capacitor/core": "latest",
+    "@capacitor/android": "^8.3.4",
     "@capacitor/camera": "latest",
+    "@capacitor/core": "latest",
     "@capacitor/splash-screen": "latest"
   },
   "devDependencies": {
