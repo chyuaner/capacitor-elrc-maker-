@@ -1,0 +1,58 @@
+package tw.yuaner.capacitor_elrc_maker;
+
+import android.graphics.Color;
+import android.os.Build;
+import android.view.Window;
+import android.view.WindowManager;
+import com.getcapacitor.Plugin;
+import com.getcapacitor.PluginCall;
+import com.getcapacitor.PluginMethod;
+import com.getcapacitor.annotation.CapacitorPlugin;
+
+@CapacitorPlugin(name = "ThemeControl")
+public class ThemeControlPlugin extends Plugin {
+
+    @PluginMethod
+    public void setNavigationBarColor(PluginCall call) {
+        String colorString = call.getString("color");
+        if (colorString == null) {
+            call.reject("Color is required");
+            return;
+        }
+        try {
+            final int color = Color.parseColor(colorString);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Window window = getActivity().getWindow();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                        window.setNavigationBarColor(color);
+                        
+                        // Set light/dark navigation bar buttons
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            int flags = window.getDecorView().getSystemUiVisibility();
+                            boolean isDark = isColorDark(color);
+                            if (isDark) {
+                                // Dark background -> light buttons (clear light navigation bar flag)
+                                flags &= ~android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+                            } else {
+                                // Light background -> dark buttons (set light navigation bar flag)
+                                flags |= android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+                            }
+                            window.getDecorView().setSystemUiVisibility(flags);
+                        }
+                    }
+                    call.resolve();
+                }
+            });
+        } catch (Exception e) {
+            call.reject("Failed to set navigation bar color: " + e.getMessage());
+        }
+    }
+
+    private boolean isColorDark(int color) {
+        double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
+        return darkness >= 0.5;
+    }
+}
