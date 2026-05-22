@@ -8,6 +8,7 @@
     "mobile"
   ],
   "scripts": {
+    "generate-assets": "mkdir -p assets && rsvg-convert -w 1024 -h 1024 aistudio-elrc-maker/public/icon-app.svg -o assets/icon.png && rsvg-convert -w 2732 -h 2732 aistudio-elrc-maker/public/icon-app.svg -o assets/splash.png && npx @capacitor/assets generate --android",
     "build:web": "cd aistudio-elrc-maker && npm install && npm run build",
     "build": "npm run build:web && npx cap sync",
     "android": "npx cap open android"
