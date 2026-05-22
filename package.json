@@ -19,7 +19,8 @@
     "@capacitor/core": "latest",
     "@capacitor/filesystem": "^8.1.2",
     "@capacitor/share": "^8.0.1",
-    "@capacitor/splash-screen": "latest"
+    "@capacitor/splash-screen": "latest",
+    "@capacitor/status-bar": "^8.0.2"
   },
   "devDependencies": {
     "@capacitor/cli": "latest",
