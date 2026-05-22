@@ -1,0 +1,10 @@
+{
+  "appId": "tw.yuaner.capacitor_elrc_maker",
+  "appName": "capacitor-elrc-maker",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
