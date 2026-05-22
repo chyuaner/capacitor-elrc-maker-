@@ -100,6 +100,33 @@ public class ThemeControlPlugin extends Plugin {
         });
     }
 
+    @PluginMethod
+    public void setScreenOrientation(PluginCall call) {
+        final String orientation = call.getString("orientation");
+        if (orientation == null) {
+            call.reject("orientation parameter is required");
+            return;
+        }
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if ("portrait".equalsIgnoreCase(orientation)) {
+                        getActivity().setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    } else if ("landscape".equalsIgnoreCase(orientation)) {
+                        getActivity().setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    } else {
+                        // Return to user/system default auto-rotation
+                        getActivity().setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                    }
+                    call.resolve();
+                } catch (Exception e) {
+                    call.reject("Failed to set screen orientation: " + e.getMessage());
+                }
+            }
+        });
+    }
+
     private boolean isColorDark(int color) {
         double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
         return darkness >= 0.5;
