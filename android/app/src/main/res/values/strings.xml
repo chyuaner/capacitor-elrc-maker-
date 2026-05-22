@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">capacitor-elrc-maker</string>
-    <string name="title_activity_main">capacitor-elrc-maker</string>
-    <string name="package_name">tw.yuaner.capacitor_elrc_maker</string>
-    <string name="custom_url_scheme">tw.yuaner.capacitor_elrc_maker</string>
+    <string name="app_name">Enhanced LRC Maker</string>
+    <string name="title_activity_main">Enhanced LRC Maker</string>
+    <string name="package_name">tw.yuaner.elrc_maker</string>
+    <string name="custom_url_scheme">tw.yuaner.elrc_maker</string>
 </resources>
