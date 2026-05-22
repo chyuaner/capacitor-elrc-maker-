@@ -4,7 +4,7 @@
   "webDir": "aistudio-elrc-maker/dist",
   "plugins": {
     "SplashScreen": {
-      "launchAutoHide": false
+      "launchAutoHide": true
     }
   }
 }
