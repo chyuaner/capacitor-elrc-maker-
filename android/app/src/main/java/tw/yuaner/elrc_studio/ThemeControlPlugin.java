@@ -1,4 +1,4 @@
-package tw.yuaner.capacitor_elrc_maker;
+package tw.yuaner.elrc_studio;
 
 import android.graphics.Color;
 import android.os.Build;

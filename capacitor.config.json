@@ -1,7 +1,7 @@
 {
-  "appId": "tw.yuaner.capacitor_elrc_maker",
-  "appName": "capacitor-elrc-maker",
-  "webDir": "aistudio-elrc-maker/dist",
+  "appId": "tw.yuaner.elrc_studio",
+  "appName": "Enhanced LRC Studio",
+  "webDir": "web-elrc-studio/dist",
   "plugins": {
     "SplashScreen": {
       "launchAutoHide": true

@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "tw.yuaner.capacitor_elrc_maker"
+    namespace = "tw.yuaner.elrc_studio"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "tw.yuaner.capacitor_elrc_maker"
+        applicationId "tw.yuaner.elrc_studio"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
