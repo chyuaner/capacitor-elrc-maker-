@@ -1,5 +1,6 @@
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Camera } from '@capacitor/camera';
+import { StatusBar } from '@capacitor/status-bar';
 
 window.customElements.define(
   'capacitor-welcome',
@@ -8,6 +9,11 @@ window.customElements.define(
       super();
 
       SplashScreen.hide();
+      try {
+        StatusBar.setOverlaysWebView({ overlay: true });
+      } catch (e) {
+        console.error('StatusBar plugin not available', e);
+      }
 
       const root = this.attachShadow({ mode: 'open' });
 
@@ -123,7 +129,7 @@ window.customElements.define(
       :host {
         position: relative;
         display: block;
-        padding: 15px 15px 15px 15px;
+        padding: calc(15px + env(safe-area-inset-top)) 15px 15px 15px;
         text-align: center;
         background-color: #73B5F6;
       }

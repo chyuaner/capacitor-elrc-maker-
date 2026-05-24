@@ -127,6 +127,20 @@ public class ThemeControlPlugin extends Plugin {
         });
     }
 
+    @PluginMethod
+    public void getStatusBarHeight(PluginCall call) {
+        int result = 0;
+        int resourceId = getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getContext().getResources().getDimensionPixelSize(resourceId);
+        }
+        float density = getContext().getResources().getDisplayMetrics().density;
+        float dpHeight = result / density;
+        com.getcapacitor.JSObject ret = new com.getcapacitor.JSObject();
+        ret.put("height", dpHeight);
+        call.resolve(ret);
+    }
+
     private boolean isColorDark(int color) {
         double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
         return darkness >= 0.5;
